@@ -4,9 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\BookCategory;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class BookCategoryCrudController extends AbstractCrudController
 {
@@ -15,14 +14,11 @@ class BookCategoryCrudController extends AbstractCrudController
         return BookCategory::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextField::new('name', 'Nom de la catégorie'),
+            AssociationField::new('books', 'Livres liés')->setFormTypeOption('by_reference', false),
         ];
     }
-    */
 }
