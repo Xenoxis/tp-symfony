@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block body %}
+    <div class="book-details" style="max-width:600px;margin:2em auto;padding:2em;background:#e2e2e2;border-radius:10px;box-shadow:0 2px 8px #0001;">
+        <h1 style="margin-bottom:0.5em;">{{ book.title }}</h1>
+        <p><strong>Auteur :</strong> {{ book.author }}</p>
+        <p><strong>Date de publication :</strong> {{ book.publicationDate ? book.publicationDate|date('d/m/Y') : 'N/A' }}</p>
+        {% if book.resume %}
+            <p style="margin-top:1.5em;">{{ book.resume }}</p>
+        {% endif %}
+        {% if book.categories|length > 0 %}
+            <p><strong>Catégories :</strong>
+                {% for cat in book.categories %}
+                    <span style="background:#eee;padding:0.2em 0.7em;border-radius:5px;margin-right:0.3em;">{{ cat.name }}</span>
+                {% endfor %}
+            </p>
+        {% endif %}
+        <a href="{{ path('app_books_search') }}" style="display:inline-block;margin-top:2em;">&larr; Retour à la recherche</a>
+    </div>
+{% endblock %} 

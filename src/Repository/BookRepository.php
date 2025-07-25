@@ -40,4 +40,19 @@ class BookRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    /**
+     * Recherche les livres dont le titre contient le terme donné (insensible à la casse)
+     * @param string $term
+     * @return Book[]
+     */
+    public function searchByTitle(string $term): array
+    {
+        return $this->createQueryBuilder('b')
+            ->where('LOWER(b.title) LIKE LOWER(:term)')
+            ->setParameter('term', '%' . $term . '%')
+            ->orderBy('b.title', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }
