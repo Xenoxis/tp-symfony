@@ -29,7 +29,7 @@ final class BookDetailsController extends AbstractController
         ]);
     }
 
-    #[Route('/books/search', name: 'app_books_search')]
+    #[Route('/book/search', name: 'app_books_search')]
     public function search(Request $request, BookRepository $bookRepository): Response
     {
         $searchTerm = $request->query->get('q', '');
