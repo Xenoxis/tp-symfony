@@ -14,7 +14,7 @@
         {% if books is not empty %}
             <div style="display: flex; flex-wrap: wrap; gap: 1.5em;">
                 {% for book in books %}
-                    <a href="{{ path('app_book_show', {'id': book.id}) }}" style="text-decoration:none;color:inherit;flex:1 1 250px;">
+                    <a href="{{ path('app_book_details', {'id': book.id}) }}" style="text-decoration:none;color:inherit;flex:1 1 250px;">
                         <div style="background:#e2e2e2;padding:1.2em 1em;border-radius:10px;box-shadow:0 2px 8px #0001;transition:box-shadow .2s;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;">
                             <strong style="font-size:1.2em;">{{ book.title }}</strong>
                             <div style="font-size:0.95em;color:#666;margin-top:0.3em;">
