@@ -20,7 +20,7 @@ security:
                 target: /
 
     access_control:
-        - { path: ^/admin, roles: ROLE_User }
+        - { path: ^/admin, roles: ROLE_ADMIN }
 
 when@test:
     security:

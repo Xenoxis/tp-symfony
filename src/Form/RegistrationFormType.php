@@ -28,8 +28,6 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
@@ -39,7 +37,6 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
@@ -49,8 +46,8 @@ class RegistrationFormType extends AbstractType
                     'Utilisateur' => 'ROLE_USER',
                     'Administrateur' => 'ROLE_ADMIN',
                 ],
-                'expanded' => true, // Affiche sous forme de cases à cocher
-                'multiple' => true, // Permet de cocher plusieurs rôles
+                'expanded' => true,
+                'multiple' => true,
                 'label' => 'Rôles',
                 'required' => true,
             ])
