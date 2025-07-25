@@ -4,6 +4,19 @@
 
 {% block body %}
     <h1>Recherche de livres</h1>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <div style="margin-bottom: 1em;">
+            <a href="{{ path('admin') }}" class="btn btn-primary">Administration</a>
+        </div>
+    {% endif %}
+
+    {% if app.user %}
+        <form method="post" action="{{ path('app_logout') }}" style="display:inline;">
+            <button type="submit" class="btn btn-secondary">Déconnexion</button>
+        </form>
+    {% endif %}
+
     <form method="get" action="{{ path('app_books_search') }}" style="margin-bottom: 2em;">
         <input type="text" name="q" value="{{ searchTerm }}" placeholder="Titre du livre..." required>
         <button type="submit">Rechercher</button>
@@ -58,4 +71,4 @@
             {% endfor %}
         </div>
     {% endif %}
-{% endblock %} 
+{% endblock %}
