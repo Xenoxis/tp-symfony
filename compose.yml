@@ -1,0 +1,11 @@
+services:
+  mysql:
+    image: mysql:lts
+    container_name: tp-symfony-mysql
+    volumes:
+      - ${PWD}/mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    ports:
+      - 3306:3306
+    
