@@ -34,12 +34,19 @@ final class BookDetailsController extends AbstractController
     {
         $searchTerm = $request->query->get('q', '');
         $books = [];
+        $allBooks = [];
+
         if ($searchTerm !== '') {
             $books = $bookRepository->searchByTitle($searchTerm);
+        } else {
+            $allBooks = $bookRepository->findAll();
         }
+
         return $this->render('book_details/search.html.twig', [
             'books' => $books,
+            'allBooks' => $allBooks,
             'searchTerm' => $searchTerm,
         ]);
     }
+
 }

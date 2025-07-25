@@ -32,5 +32,30 @@
         {% else %}
             <p>Aucun livre trouvé.</p>
         {% endif %}
+    {% else %}
+        <h2>Tous les livres</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5em;">
+            {% for book in allBooks %}
+                <a href="{{ path('app_book_details', {'id': book.id}) }}" style="text-decoration:none;color:inherit;flex:1 1 250px;">
+                    <div style="background:#f5f5f5;padding:1.2em 1em;border-radius:10px;box-shadow:0 2px 8px #0001;">
+                        <strong style="font-size:1.2em;">{{ book.title }}</strong>
+                        <div style="font-size:0.95em;color:#666;margin-top:0.3em;">
+                            {% if book.publicationDate %}
+                                <span>{{ book.publicationDate|date('d/m/Y') }}</span>
+                            {% endif %}
+                            {% if book.author %}
+                                <span style="margin-left:0.7em;">par {{ book.author }}</span>
+                            {% endif %}
+                        </div>
+                        {% if book.categories is not empty %}
+                            <div style="margin-top:0.5em;font-size:0.9em;color:#444;">
+                                Catégories :
+                                {{ book.categories|map(c => c.name)|join(', ') }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
     {% endif %}
 {% endblock %} 
