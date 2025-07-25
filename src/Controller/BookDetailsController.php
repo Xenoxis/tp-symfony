@@ -12,10 +12,20 @@ use App\Entity\Book;
 final class BookDetailsController extends AbstractController
 {
     #[Route('/book/details', name: 'app_book_details')]
-    public function index(): Response
+    public function index(Request $request, BookRepository $bookrepository): Response
     {
+
+        $bookid = $request->query->get('id');
+
+        $book = null;
+
+        if ($bookid !== null) {
+            $book = $bookrepository->find($bookid);
+        }
+
         return $this->render('book_details/index.html.twig', [
             'controller_name' => 'BookDetailsController',
+            'book' => $book
         ]);
     }
 
@@ -30,14 +40,6 @@ final class BookDetailsController extends AbstractController
         return $this->render('book_details/search.html.twig', [
             'books' => $books,
             'searchTerm' => $searchTerm,
-        ]);
-    }
-
-    #[Route('/books/{id}', name: 'app_book_show', requirements: ['id' => '\\d+'])]
-    public function show(Book $book): Response
-    {
-        return $this->render('book_details/show.html.twig', [
-            'book' => $book,
         ]);
     }
 }
